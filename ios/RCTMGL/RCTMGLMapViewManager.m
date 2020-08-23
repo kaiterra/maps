@@ -504,7 +504,9 @@ RCT_EXPORT_METHOD(showAttribution:(nonnull NSNumber *)reactTag
 - (void)mapView:(MGLMapView *)mapView didFinishLoadingStyle:(MGLStyle *)style
 {
     RCTMGLMapView *reactMapView = (RCTMGLMapView*)mapView;
-    //style.localizesLabels = reactMapView.reactLocalizeLabels;
+    if(reactMapView.reactLocalizeLabels == true) {
+        [style localizeLabelsIntoLocale:nil];
+    }
     
     for (int i = 0; i < reactMapView.sources.count; i++) {
         RCTMGLSource *source = reactMapView.sources[i];
